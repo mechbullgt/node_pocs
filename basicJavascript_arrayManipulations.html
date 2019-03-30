@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="displayIt()">Display current Array</button>
+    <button onclick="displayLength()">Display Array Length</button>
+    <button onclick="popUpController()">Pop End Item!</button>
+    <button onclick="pushController()">Push "0" at end</button>
+    <button onclick="shiftController()">Shift No. 1</button>
+    <div id="display"></div>
+    <div id="display-length"></div>
+    <ul id="operations">
+    </ul>
+</body>
+<script>
+    var baseArray = [1, 2, 3, 4];
+    function displayIt() {
+        console.log(baseArray);
+        document.getElementById("display").innerHTML = baseArray;
+    }
+
+    function displayLength(){
+        var xlength = baseArray.length;
+        console.log(xlength);
+        document.getElementById("display-length").innerHTML = xlength;
+    }
+
+    // Pop takes no parameter
+    function pop2ndLast(array) {
+        array.pop(array.length - 2);
+        return array.toString();
+    }
+
+    function pushKaro(array) {
+        array.push(0);
+        return array.toString();
+    }
+
+    function shiftKaro(array) {
+        array.shift();
+        return array.toString();
+    }
+
+    function popUpController() {
+        var ourArray = baseArray;
+        var listNode = document.createElement("li");
+        var listTextNode = document.createTextNode(pop2ndLast(ourArray));
+        listNode.appendChild(listTextNode);
+        document.getElementById("operations").appendChild(listNode);
+
+        // below statements where not showning the earlier values on the view as the innerHTML destroys the previous values.
+        /*     document.getElementById("operations").innerHTML=ourArray;
+               document.getElementById("operations").innerHTML=ourArray.length;
+         */
+    }
+    function pushController() {
+        var ourArray = baseArray;
+        var listNode = document.createElement("li");
+        var listTextNode = document.createTextNode(pushKaro(ourArray));
+        listNode.appendChild(listTextNode);
+        document.getElementById("operations").appendChild(listNode);
+
+        // below statements where not showning the earlier values on the view as the innerHTML destroys the previous values.
+        /*     document.getElementById("operations").innerHTML=ourArray;
+               document.getElementById("operations").innerHTML=ourArray.length;
+         */
+    }
+
+    function shiftController() {
+        var ourArray = baseArray;
+        var listNode = document.createElement("li");
+        var listTextNode = document.createTextNode(shiftKaro(ourArray));
+        listNode.appendChild(listTextNode);
+        document.getElementById("operations").appendChild(listNode);
+
+        // below statements where not showning the earlier values on the view as the innerHTML destroys the previous values.
+        /*     document.getElementById("operations").innerHTML=ourArray;
+               document.getElementById("operations").innerHTML=ourArray.length;
+         */
+    }
+
+</script>
+
+</html>

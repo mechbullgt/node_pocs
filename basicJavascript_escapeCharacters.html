@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button onclick="justConsoleLog()">
+    Click here & check Console.
+</button>  
+<div id="console-text"></div>  
+</body>
+<script>
+//Escape characters
+
+var withSingleQuote = 'I it\'s me';
+var withDoubleInSingleQuote = 'Hi is this a "Pen"';
+var withSingleInDoubleQuote = "Hi this his man's character, no \"Juliet!\"";
+var withBacklash ="Hi I am back\\";
+var newLine ="Hi lets begin on \n new line";
+var carriageReturn ="He is a Javascript developer \rShe";
+var withTab="Here is the \t \t tab";
+
+// When button is tapped the message is shown in the div element.
+function justConsoleLog(){
+    document.getElementById("console-text").innerText= withBackspace;
+};
+
+</script>
+
+</html>
