@@ -14,6 +14,7 @@
     <button onclick="popUpController()">Pop End Item!</button>
     <button onclick="pushController()">Push "0" at end</button>
     <button onclick="shiftController()">Shift No. 1</button>
+    <button onclick="unshiftController()">Unshift "9" at No. 1</button>
     <div id="display"></div>
     <div id="display-length"></div>
     <ul id="operations">
@@ -45,6 +46,11 @@
 
     function shiftKaro(array) {
         array.shift();
+        return array.toString();
+    }
+
+    function unshiftKaro(array){
+        array.unshift(9);
         return array.toString();
     }
 
@@ -84,6 +90,14 @@
         /*     document.getElementById("operations").innerHTML=ourArray;
                document.getElementById("operations").innerHTML=ourArray.length;
          */
+    }
+
+    function unshiftController(){
+        var ourArray = baseArray;
+        var listNode = document.createElement("li");
+        var textNode = document.createTextNode(unshiftKaro(ourArray));
+        listNode.appendChild(textNode);
+        document.getElementById("operations").appendChild(listNode);
     }
 
 </script>

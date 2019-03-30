@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="operationsController(1)">Show Que</button>
+    <button onclick="operationsController(2)">Add To Que</button>
+    <button onclick="operationsController(3)">Remove 1 from Que</button>
+<ul id="operations"></ul>
+</body>
+<script>
+var arr=[1,2,3,4];
+
+function addToQueue(a){
+    arr.push(a);
+    return JSON.stringify(arr);
+}
+
+function removeFromQueue(){
+    arr.shift();
+    return "Removal Success!"
+}
+
+function showQueue(){
+    return JSON.stringify(arr);
+}
+
+function operationsController(a){
+    var listNode = document.createElement("li");
+    if(a==1){
+        var textNode = document.createTextNode(showQueue());
+        listNode.appendChild(textNode);
+        document.getElementById("operations").appendChild(listNode);
+    } else if(a==2){
+        var textNode = document.createTextNode(addToQueue(9));
+        listNode.appendChild(textNode);
+        document.getElementById("operations").appendChild(listNode);
+    } else if(a==3){
+        var textNode = document.createTextNode(removeFromQueue());
+        listNode.appendChild(textNode);
+        document.getElementById("operations").appendChild(listNode);
+    } else {
+        console.log("Invalid Choice");
+    }
+}
+
+</script>
+</html>
