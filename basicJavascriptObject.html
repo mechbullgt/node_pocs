@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div id="ourObject"></div>
+        <div id="ourNewObject"></div>
+        <label for="input-key">Enter your key to get Value</label>
+        <input id="input-key" type="text">
+        <button onclick="populateDropDown()">Populate Dropdown</button>
+        <select name="object-select" id="object-select" onchange="getValueForDropDown()">
+            <!-- <option value="default">Choose a key</option> -->
+        </select>
+        <button onclick="getValueByBracketNotation()">Get Key's Value by []</button>
+        <button onclick="getValueByDotNotation()">Get Key's Value by .</button>
+        <div id="value-here">
+        </div>
+        <div id="value-here-2"></div>
+    </section>
+    <section>
+        <hr>
+        <h3>Admin Section</h3>
+        <label for="enter">Enter the latest Movie</label>
+        <input type="text" id="enter">
+        <button id="submitLatest" onclick="updateObject()">Update Object Database</button>
+        <br>
+        <button id="submitLatest" onclick="deleteFromAnObject()">Remove Age Field from Object Database</button>
+        <br>
+        <label for="date">Enter Last Update Date Time</label>
+        <input type="date" name="date" id="date">
+        <button id="submitLastUpdated" onclick="addToObject()">Save Timestamp</button>
+    </section>
+</body>
+<script>
+    var myObject = {
+        "name": "ARR",
+        "job": "Musician",
+        "age": 50,
+        "title": "Mozart of Madras",
+        "latest": "Avengers"
+    }
+    document.getElementById("ourObject").innerHTML = JSON.stringify(myObject);
+    function getValueByBracketNotation() {
+        var key = document.getElementById("input-key").value;
+        console.log('Key:', key);
+        if(myObject.hasOwnProperty(key)){
+            var value = myObject[key];
+        console.log('Value:', value);
+        document.getElementById("value-here").innerHTML = value;
+        } else {
+            return alert('Key "'+key+'"not found');
+        }
+    }
+
+    //Javascript doesn't allow dot notation with variables
+    // https://medium.com/@prufrock123/js-dot-notation-vs-bracket-notation-797c4e34f01d
+    function getValueByDotNotation() {
+        var key = document.getElementById("input-key").value;
+        console.log('Key:', key);
+        var parsedKeyToObject = key.toString();
+        var value = myObject.parsedKeyToObject;
+        console.log('Value:', value);
+        document.getElementById("value-here-2").innerHTML = value;
+    }
+
+    function getValueForDropDown() {
+        var el = (document.getElementById("object-select"));
+        var key = el.options[el.selectedIndex].value;
+        console.log("Element", el);
+        console.log('Key:', key);
+        var value = myObject[key];
+        console.log("Value:", value);
+        document.getElementById("value-here").innerHTML = value;
+    }
+
+    function updateObject() {
+        var key = "latest";
+        var value = document.getElementById("enter").value;
+        myObject[key] = value;
+        document.getElementById("ourNewObject").innerHTML = JSON.stringify(myObject);
+    }
+
+    function addToObject() {
+        var newKey = "lastUpdated";
+        var value = document.getElementById("date").value;
+        myObject[newKey] = value;
+        document.getElementById("ourNewObject").innerHTML = JSON.stringify(myObject);
+    }
+
+    function deleteFromAnObject(){
+        var keyToDelete ="age";
+        delete myObject["age"];
+        document.getElementById("ourNewObject").innerHTML = JSON.stringify(myObject);
+    }
+
+    function populateDropDown() {
+        var dropDownElement = document.getElementById("object-select");
+        console.log("OurObject:", JSON.stringify(myObject));
+        var allKeys = Object.keys(myObject);
+        console.log("All Keys:", allKeys);
+        for (var i = 0; i < allKeys.length; i++) {
+            var el = document.createElement("option");
+            el.text = allKeys[i];
+            dropDownElement.appendChild(el);
+        }
+
+
+    }
+</script>
+
+</html>
