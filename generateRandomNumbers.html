@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Generate Whole number between 0 to 9</h3>
+    <button onclick="showAction()">Generate it!</button>
+    <div id="output"></div>
+</body>
+<script>
+var el= document.getElementById("output");
+
+// ---
+
+function randomWholeNum() {
+var randomWholeNumber = Math.floor((Math.random()*10));
+return randomWholeNumber;
+}
+
+//---
+function showAction(){
+    el.innerHTML=randomWholeNum();
+}
+</script>
+<style>
+    body{
+        align-content: center;
+        align-items: center;
+    }
+#output{
+    background-color: blue;
+    margin: 50px auto;
+    color: white;
+    width: 40%;
+    text-align: center;
+    padding: 15px;
+    }
+</style>
+</html>
