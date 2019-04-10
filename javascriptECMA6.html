@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>ES6</h3>
+    <label for="output">Output by Arrow Function</label>
+    <div id="output"></div>
+    <hr>
+    <h3>Higher Order Arrow Functions, map(), filter(), reduce()</h3>
+    <hr>
+    <h3>Default Parameter Functions</h3>
+    <div>
+      <input id="input-3" type="text">
+    </div>
+    <button id="output-3"></button>
+</body>
+<script>
+const showTime =()=>{
+    return new Date().toLocaleTimeString();
+}
+document.getElementById("output").innerHTML=showTime();
+
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+const squareList = (arr) => {
+  "use strict";
+  // change code below this line
+  const positiveIntegers = arr.filter((value)=>{
+  return (value>0 && value%parseInt(value)===0)?value:false;
+  });
+  console.log("positive",positiveIntegers);
+  let squaredIntegers =[];
+  squaredIntegers = positiveIntegers.map((num)=>{
+    return Math.pow(num, 2);
+  })
+  console.log("Squared",squaredIntegers);
+  // change code above this line
+  return squaredIntegers;
+};
+// test your code
+const squaredIntegers = squareList(realNumberArray);
+console.log("output",squaredIntegers);
+
+// Default Parameter
+let name = document.getElementById("input-3").value;
+console.log("name",name);
+function displayGreeting (nam="Hero"){
+  return "Hello "+nam;
+}
+document.getElementById("output-3").innerText=(name!="")?displayGreeting(name):displayGreeting();
+
+</script>
+</html>

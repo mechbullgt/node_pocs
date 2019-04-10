@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Regex</title>
+</head>
+
+<body>
+    <p id="sample">You need to check all the usernames in a database. Here are some simple rules that users have to
+        follow when creating their username.
+
+        1) The only numbers in the username have to be at the end. There can be zero or more of them at the end.
+
+        2) Username letters can be lowercase and uppercase.
+
+        3) Usernames have to be at least two characters long. A two-letter username can only use alphabet letter
+        characters.</p>
+    <div id="content"></div>
+</body>
+<script>
+    "use strict"
+    var sampleText = document.getElementById("sample").innerHTML;
+    function createElement(elType, h1Text) {
+        var el = document.getElementById("content");
+        var h1El = document.createElement(elType);
+        var h1TextNode = document.createTextNode(h1Text);
+        h1El.appendChild(h1TextNode);
+        el.appendChild(h1El);
+    }
+
+    function testMethodRegex(sampleText) {
+        var regex = /up/;
+        createElement("p", "regEx.test(SampleText)");
+        return createElement("p", regex.test(sampleText));
+    }
+
+    function testUsername(sampleText){
+        var regex = /(^\D.)/
+        createElement("p","Validating UserName:"+sampleText);
+        return createElement("p",regex.test(sampleText));
+    }
+
+    testMethodRegex(sampleText);
+    testUsername("JackOfAllTrades");
+</script>
+
+</html>
