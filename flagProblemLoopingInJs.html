@@ -1,0 +1,47 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Flag</title>
+    </head>
+
+    <body>
+        <p>We have defined a function, filteredArray, which takes arr, a nested array, and elem as arguments, and returns a
+            new array. elem represents an element that may or may not be present on one or more of the arrays nested within
+            arr. Modify the function, using a for loop, to return a filtered version of the passed array such that any array
+            nested within arr containing elem has been removed.</p>
+        <p id="result"></p>
+    </body>
+    <script>
+        function filteredArray(arr, elem) {
+            let newArr = [];
+            let flag = false;
+            // change code below this line
+            for (let out = 0; out < arr.length; out++) {
+                let arr1 = arr[out];
+                for (let inside = 0; inside < arr1.length; inside++) {
+                    if (typeof(arr1[inside])==typeof(elem)&&arr1[inside] == elem) {
+                        console.log(arr1[inside]);
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    console.log(arr1);
+                    newArr.push(arr1);
+                }
+                flag=false;
+            }
+            // change code above this line
+            console.log(arr);
+            console.log(newArr);
+            return newArr;
+        }
+
+        // change code here to test different cases:
+        document.getElementById("result").innerHTML = filteredArray([["trumpets", 2], ["flutes", 4], ["saxophones", 2]], 2);
+    </script>
+
+    </html>
