@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^3.0.5",
-    "json-beautify": "^1.1.0",
-    "html-tablify": "2.0.2"
+    "html-tablify": "2.0.2",
+    "json-beautify": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
