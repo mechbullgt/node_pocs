@@ -137,46 +137,52 @@ function showTree() {
 }
 
 function buildTable(a) {
-    var e = document.createElement("table");
+    var tableElement = document.createElement("table");
     var d, b;
     if (isArray(a)) return buildArray(a);
-    for (var c in a) "object" != typeof a[c] || isArray(a[c]) ? "object" == typeof a[c] && isArray(a[c]) ? (d = e.insertRow(-1), b = d.insertCell(-1), b.colSpan = 2, b.innerHTML = '<div class="td_head">' + encodeText(c) + '</div><table style="width:100%">' + $(buildArray(a[c]), !1).html() + "</table>") : (d = e.insertRow(-1), b = d.insertCell(-1), b.innerHTML = "<div class='td_head'>" + encodeText(c) + "</div>", d = d.insertCell(-1), d.innerHTML = "<div class='td_row_even'>" +
-        encodeText(a[c]) + "</div>") : (d = e.insertRow(-1), b = d.insertCell(-1), b.colSpan = 2, b.innerHTML = '<div class="td_head">' + encodeText(c) + '</div><table style="width:100%">' + $(buildTable(a[c]), !1).html() + "</table>");
-    return e
+    for (var c in a) "object" != typeof a[c] || isArray(a[c]) ? "object" == typeof a[c] && isArray(a[c]) ? (d = tableElement.insertRow(-1), b = d.insertCell(-1), b.colSpan = 2, b.innerHTML = '<div class="td_head">' + encodeText(c) + '</div><table style="width:100%">' + $(buildArray(a[c]), !1).html() + "</table>") : (d = tableElement.insertRow(-1), b = d.insertCell(-1), b.innerHTML = "<div class='td_head'>" + encodeText(c) + "</div>", d = d.insertCell(-1), d.innerHTML = "<div class='td_row_even'>" +
+        encodeText(a[c]) + "</div>") : (d = tableElement.insertRow(-1), b = d.insertCell(-1), b.colSpan = 2, b.innerHTML = '<div class="td_head">' + encodeText(c) + '</div><table style="width:100%">' + $(buildTable(a[c]), !1).html() + "</table>");
+    return tableElement
 }
 
-function buildArray(a) {
-    var e = document.createElement("table");
-    var d, b, c = !1,
+function buildArray(anArray) {
+    var tableElement = document.createElement("table");
+    var row, cell, c = !1,
         p = !1,
         m = {},
         h = -1,
         n = 0,
         l;
     l = "";
-    if (0 == a.length) return "<div></div>";
-    d = e.insertRow(-1);
-    for (var f = 0; f < a.length; f++)
-        if ("object" != typeof a[f] || isArray(a[f])) {
-            "object" == typeof a[f] && isArray(a[f]) ? (b = d.insertCell(h), b.colSpan = 2, b.innerHTML = '<div class="td_head"></div><table style="width:100%">' + $(buildArray(a[f]), !1).html() + "</table>", c = !0) : p || (h += 1, p = !0, b = d.insertCell(h), m.empty = h, b.innerHTML = "<div class='td_head'>&nbsp;</div>");
+    //Check length of the array
+    if (0 == anArray.length) return "<div></div>";
+    row = tableElement.insertRow(-1);
+    // Else if array length is more than 0
+    for (var arrayItem = 0; arrayItem < anArray.length; arrayItem++)
+        if ("object" != typeof anArray[arrayItem] || isArray(anArray[arrayItem])) {
+            if ("object" == typeof anArray[arrayItem] && isArray(anArray[arrayItem])) {
+                ((cell = row.insertCell(h), cell.colSpan = 2, cell.innerHTML = '<div class="td_head"></div><table style="width:100%">' + $(buildArray(anArray[arrayItem]), !1).html() + "</table>", c = !0))
+            } else {
+                (p || (h += 1, p = !0, cell = row.insertCell(h), m.empty = h, cell.innerHTML = "<div class='td_head'>&nbsp;</div>"));
+            }
         } else
-            for (var k in a[f]) l =
-                "-" + k, l in m || (c = !0, h += 1, b = d.insertCell(h), m[l] = h, b.innerHTML = "<div class='td_head'>" + encodeText(k) + "</div>");
-    c || e.deleteRow(0);
+            for (var k in anArray[arrayItem]) l =
+                "-" + k, l in m || (c = !0, h += 1, cell = row.insertCell(h), m[l] = h, cell.innerHTML = "<div class='td_head'>" + encodeText(k) + "</div>");
+    c || tableElement.deleteRow(0);
     n = h + 1;
-    for (f = 0; f < a.length; f++)
-        if (d = e.insertRow(-1), td_class = isEven(f) ? "td_row_even" : "td_row_odd", "object" != typeof a[f] || isArray(a[f]))
-            if ("object" == typeof a[f] && isArray(a[f]))
-                for (h = m.empty, c = 0; c < n; c++) b = d.insertCell(c), b.className = td_class, l = c == h ? '<table style="width:100%">' + $(buildArray(a[f]), !1).html() + "</table>" : " ", b.innerHTML = "<div class='" + td_class + "'>" + encodeText(l) +
+    for (arrayItem = 0; arrayItem < anArray.length; arrayItem++)
+        if (row = tableElement.insertRow(-1), td_class = isEven(arrayItem) ? "td_row_even" : "td_row_odd", "object" != typeof anArray[arrayItem] || isArray(anArray[arrayItem]))
+            if ("object" == typeof anArray[arrayItem] && isArray(anArray[arrayItem]))
+                for (h = m.empty, c = 0; c < n; c++) cell = row.insertCell(c), cell.className = td_class, l = c == h ? '<table style="width:100%">' + $(buildArray(anArray[arrayItem]), !1).html() + "</table>" : " ", cell.innerHTML = "<div class='" + td_class + "'>" + encodeText(l) +
                     "</div>";
             else
-                for (h = m.empty, c = 0; c < n; c++) b = d.insertCell(c), l = c == h ? a[f] : " ", b.className = td_class, b.innerHTML = "<div class='" + td_class + "'>" + encodeText(l) + "</div>";
+                for (h = m.empty, c = 0; c < n; c++) cell = row.insertCell(c), l = c == h ? anArray[arrayItem] : " ", cell.className = td_class, cell.innerHTML = "<div class='" + td_class + "'>" + encodeText(l) + "</div>";
         else {
-            for (c = 0; c < n; c++) b = d.insertCell(c), b.className = td_class, b.innerHTML = "<div class='" + td_class + "'>&nbsp;</div>";
-            for (k in a[f]) c = a[f], l = "-" + k, h = m[l], b = d.cells[h], b.className = td_class, "object" != typeof c[k] || isArray(c[k]) ? "object" == typeof c[k] && isArray(c[k]) ? b.innerHTML = '<table style="width:100%">' + $(buildArray(c[k]), !1).html() + "</table>" : b.innerHTML =
-                "<div class='" + td_class + "'>" + encodeText(c[k]) + "</div>" : b.innerHTML = '<table style="width:100%">' + $(buildTable(c[k]), !1).html() + "</table>"
+            for (c = 0; c < n; c++) cell = row.insertCell(c), cell.className = td_class, cell.innerHTML = "<div class='" + td_class + "'>&nbsp;</div>";
+            for (k in anArray[arrayItem]) c = anArray[arrayItem], l = "-" + k, h = m[l], cell = row.cells[h], cell.className = td_class, "object" != typeof c[k] || isArray(c[k]) ? "object" == typeof c[k] && isArray(c[k]) ? cell.innerHTML = '<table style="width:100%">' + $(buildArray(c[k]), !1).html() + "</table>" : cell.innerHTML =
+                "<div class='" + td_class + "'>" + encodeText(c[k]) + "</div>" : cell.innerHTML = '<table style="width:100%">' + $(buildTable(c[k]), !1).html() + "</table>"
         }
-    return e
+    return tableElement
 }
 
 function encodeText(a) {
@@ -185,7 +191,7 @@ function encodeText(a) {
 
 // Check if "mayBeArray" is an array type
 function isArray(mayBeArray) {
-    console.log('Found an Array: ',mayBeArray);
+    console.log('Found an Array: ', mayBeArray);
     return "[object Array]" === Object.prototype.toString.call(a)
 }
 
