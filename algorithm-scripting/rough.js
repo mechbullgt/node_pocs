@@ -1,5 +1,5 @@
 function checkMatch(){
-    return "g".match(/[aeiou]/g);
+    return "f".match(/[a-e]/g);
 }
 
 console.log('checkMatch() :', checkMatch());
