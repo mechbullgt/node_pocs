@@ -5,9 +5,23 @@ function fearNotLetter(str) {
     let rangeEnd = strArr.slice(str.length-1,str.length);
     console.log('rangeEnd :', rangeEnd);
     let regex = getCustomRegex(rangeStart,rangeEnd);
-    let missingLetter = getMissingLetter(str,regex);
+    let missingLetter = getMissingLetterFromRange(getRangeElements(rangeStart,rangeEnd),str);
     return missingLetter;
   }
+
+  function getMissingLetterFromRange(range, str){
+    let missingX;
+    for (let x in range){
+        if(str.includes(range[x])){
+            console.log('str[x] :', range[x]);
+        } else {
+            missingX=range[x];
+            console.log('missingX :', missingX);
+            return missingX;
+        }
+    }
+    return undefined;
+}
 
   function getMissingLetter(str, regex){
       let missingX;
@@ -25,13 +39,26 @@ function fearNotLetter(str) {
       return undefined;
   }
 
+  function getRangeElements(s,e){
+      let sChar= s[0].charCodeAt(0);
+      console.log('sChar :', sChar);
+      let eChar = e[0].charCodeAt(0);
+      console.log('eChar :', eChar);
+      let rangeElements = [];
+      for(let x = sChar;x<=eChar;x++){
+          rangeElements.push(String.fromCharCode(x));
+      }
+      console.log('rangeElements :', rangeElements);
+      return rangeElements;
+  }
+
   function getCustomRegex(s,e){
       let baseRegex = "/"+"["+s+"-"+e+"]"+"/"+"g";
-      let 
-      let customRegex = new RegExp([s-e]);
+      let customRegex = new RegExp(`[${s}-${e}]`,'g');
       console.log('customRegex :', customRegex);
       console.log('baseRegex :', baseRegex);
-      return baseRegex;
+      return customRegex;
   }
   
-  fearNotLetter("abce");
+//  fearNotLetter("abce");
+console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
