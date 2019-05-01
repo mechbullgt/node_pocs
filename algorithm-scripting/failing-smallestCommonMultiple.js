@@ -81,5 +81,5 @@ function smallestCommons(arr) {
       return range;
   }  
 
- smallestCommons([2,10]);
-// greatestCommonDivisor(2,3);
+// smallestCommons([2,10]);
+ greatestCommonDivisor(15,20);

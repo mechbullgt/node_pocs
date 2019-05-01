@@ -71,5 +71,33 @@ function checkPrime(x){
     return true;
 }
 
-console.log('getPrimeNumbers(10) :', getPrimeNumbers(10));
+// console.log('getPrimeNumbers(10) :', getPrimeNumbers(10));
 // checkPrime(11);
+
+function gcd(x, y) {    // Implements the Euclidean Algorithm
+    if (y === 0)
+        return x;
+    else
+        return gcd(y, x%y);
+}
+// let output = gcd(1,5);
+// console.log('output :', output);
+
+function valueExtractor(arr){
+    // return arr.filter((item)=>{
+    //     return item>2;
+    // })
+    return typeof(arr[0][0][0][0][0]);
+}
+
+// console.log(valueExtractor([[[[["a"]]]]]));
+
+function jcbExtractor(arr){
+    let finalArr =[];
+    let arrStr = arr.toString();
+    console.log('arrStr :', arrStr);
+    finalArr = arrStr.replace("");
+    return finalArr;
+}
+
+ console.log(jcbExtractor([1, [2], [3, [[4]]]]));
