@@ -100,4 +100,22 @@ function jcbExtractor(arr){
     return finalArr;
 }
 
- console.log(jcbExtractor([1, [2], [3, [[4]]]]));
+// console.log(jcbExtractor([1, [2], [3, [[4]]]]));
+
+function binaryToString(bnry){
+    //binary to decimal
+    let dec = parseInt(bnry,2);
+    console.log('dec :', dec);
+    let char = String.fromCharCode(dec);
+    console.log('char :', char);
+}
+
+// console.log('binaryToString("01000001") :', binaryToString("01000001"));
+
+function falseCheck(str){
+    let faslyPool =[0, false, undefined, NaN,null,""];
+    let status = faslyPool.includes(str)?false:true;
+    return status;
+}
+
+console.log('falseCheck("yes") :', falseCheck("yes"));
