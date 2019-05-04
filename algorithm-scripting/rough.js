@@ -118,4 +118,20 @@ function falseCheck(str){
     return status;
 }
 
-console.log('falseCheck("yes") :', falseCheck("yes"));
+// console.log('falseCheck("yes") :', falseCheck("yes"));
+
+function justCurrying(a){
+    return (b)=>{
+        return (c)=>{
+            return a*b*c;
+        }
+    }
+}
+
+// console.log('justCurrying(1)(2)(3) :', justCurrying(1)(2));
+
+function getMeAPie(){
+    return Math.PI;
+}
+
+console.log(getMeAPie());
